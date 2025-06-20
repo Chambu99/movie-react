@@ -75,28 +75,40 @@ const fetchMovies = async (query='') => {
     <div className='pattern'/>
   <div className='wrapper'>
    <header>
-    <img src='./heroes.png' alt='heroesBanner' className='heroesBanner' />
+    <img src='./kelvin-anime.png' alt='heroesBanner' style={{width: '2rem', height: 'auto', marginTop: '0.7rem', maxWidth: '2.5rem', minWidth: '3rem', position: 'absolute', top: '0', left: '0', transform: 'translateX(25%)', zIndex: '1'}} className='heroesBanner' />
      <h1>Find <span className='text-gradient'>Movies </span> 
     You'll <br/>enjoy without the hassle</h1>
     <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
    </header>
    
    <section className='all-movies'>
-    <h2>All Movies</h2>
-    {loading && <p>Loading...</p>}
-    {errorMessage && <p className='error'>{errorMessage}</p>}
-    {movies.length > 0 ? (
-      <div className='movie-list'>
-        {movies.map((movie) => (
+  <h2>All Movies</h2>
+  {loading && <p>Loading...</p>}
+  {errorMessage && <p className='error'>{errorMessage}</p>}
+  {movies.length > 0 ? (
+    <div className='movie-list'>
+      {movies.map((movie) => (
+        <div key={movie.id}>
+          <MovieCard movie={movie} />
           
-        <MovieCard  key={movie.id} movie={movie} />
-        
-        ))}
-      </div>
-    ) : (
-      !loading && <p>No movies found.</p>
-    )}
-   </section>
+          {/*  External Link to movieuniverse.lol */}
+          <a
+  href={`https://movieuniverse.lol/watch-movieuniverse-${movie.id}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{ display: 'inline-block', marginTop: '8px', color: '#AB8BFF' }}
+>
+  Watch now→
+</a>
+
+        </div>
+      ))}
+    </div>
+  ) : (
+    !loading && <p>No movies found.</p>
+  )}
+</section>
+
    
   </div>
   
